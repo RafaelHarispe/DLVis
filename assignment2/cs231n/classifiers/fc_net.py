@@ -254,14 +254,9 @@ class FullyConnectedNet(object):
         for layer in range(1, self.num_layers):
             W, b = 'W'+str(layer), 'b'+str(layer)
             
-            # Implementation for FullyConectedNets.ipynb
-            #Wi, bi = self.params[W], self.params[b]
-            #x, caches[str(layer)] = affine_relu_forward(x, Wi, bi)
-        
-            # Implementation for BatchNormalization/Dropout.ipynb
             x, cache_aff[layer] = affine_forward(x, self.params[W], self.params[b])
             if self.use_batchnorm:
-                gamma, beta = np.ones(self.params[W].shape[1]), np.zeros(self.params[W].shape[1])
+                gamma, beta = self.params['gamma%d'%(layer)], self.params['beta%d'%(layer)]
                 x, cache_bn[layer] = batchnorm_forward(x, gamma, beta, self.bn_params[layer-1])
             x, cache_relu[layer] = relu_forward(x)
             if self.use_dropout:
@@ -307,10 +302,6 @@ class FullyConnectedNet(object):
             W, b, gamma, beta = 'W'+str(layer), 'b'+str(layer), 'gamma'+str(layer), 'beta'+str(layer)
             Wi = self.params[W]
 
-            # Implementation for FullyConectedNets.ipynb
-            #dhidden, grads[W], grads[b] = affine_relu_backward(dhidden, caches[str(layer)])
-
-            # Implementation for BatchNormalization/Dropout.ipynb
             if self.use_dropout:
                 dhidden = dropout_backward(dhidden,  cache_drop[layer])
             dhidden = relu_backward(dhidden, cache_relu[layer])
