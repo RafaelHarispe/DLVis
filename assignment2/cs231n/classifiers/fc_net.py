@@ -109,8 +109,7 @@ class TwoLayerNet(object):
         dx2, dw2, db2 = affine_backward(dscores, a2_cache)
         grads['W2'] = dw2 + self.reg * self.params['W2']
         grads['b2'] = db2
-        #dx2_relu = relu_backward(dx2, r1_cache)
-        #dx1, dw1, db1 = affine_backward(dx2_relu, a1_cache)
+
         dx1 , dw1, db1 = affine_relu_backward(dx2, ar1_cache)
         grads['W1'] = dw1 + self.reg * self.params['W1']
         grads['b1'] = db1

@@ -1,0 +1,12 @@
+Se agregaron: classifiers/pretrained_cnn.py
+              datasets/get_pretrained_model.sh
+              datasets/get_tiny_imagenet_a.sh
+              ImageGeneration.ipynb
+              ImageGradients.ipynb
+              scikit-image=0.13.1 en requirements.txt
+              preprocess_image_2016() y deprocess_image_2016() en image_utils.py. 
+
+Se sacó: Network Visualization (PyTorch y Tensorflow)
+collectSubmission.sh modificado acordemente
+Llamadas a preprocess_image() y deprocess_image() en ImageGeneration.ipynb e ImageGradients.ipynb sustituídas por sus versiones 2016.
+              
